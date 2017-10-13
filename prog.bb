@@ -1,4 +1,12 @@
 clear arc;
-while arc not 10;
-incr arc;
+clear count;
+clear total;
+while arc not 3;
+	incr arc;
+	incr count;
+	incr count;
+	while count not 0;
+		decr count;
+		incr total;
+	end;
 end;

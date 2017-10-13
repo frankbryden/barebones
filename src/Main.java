@@ -21,7 +21,7 @@ public class Main {
 			System.err.println(e.getMessage());
 		}
 		if (file != ""){
-			Interpreter i = new Interpreter(file.replace("\n", "").split(";"));
+			Interpreter i = new Interpreter(file.replace("\n", "").replace("\t",  "").split(";"));
 			i.run();
 		}
 	}

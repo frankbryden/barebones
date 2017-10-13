@@ -23,21 +23,24 @@ public class Condition {
 			return true;
 		}
 		if (comparator == Comparator.NOT_EQUAL && this.value != var_value) {
+			System.out.printf("%s is not equal to %d%n", this.var_name, this.value);
 			return true;
 		}
+		System.out.printf("%s is equal to %d%n", this.var_name, this.value);
 		return false;
 	}
 	
 	public String get_var_name(String condition) {
-		Pattern r = Pattern.compile("^([a-zA-Z])+\\s");
+		Pattern r = Pattern.compile("^([a-zA-Z])+");
 		Matcher m = r.matcher(condition);
+		m.find();
 		System.out.println("Evaluating " + condition);
 		return m.group(0);
 	}
 	
 	public Comparator get_comparator(String condition) {
-		String name_trimmed = condition.substring(this.var_name.length());
-		if (name_trimmed.startsWith("not") && name_trimmed.startsWith("!=")) {
+		String name_trimmed = condition.substring(this.var_name.length()).trim();
+		if (name_trimmed.startsWith("not") || name_trimmed.startsWith("!=")) {
 			return Comparator.NOT_EQUAL;
 		} else if (name_trimmed.startsWith("=")) {
 			return Comparator.EQUAL;
@@ -52,7 +55,8 @@ public class Condition {
 	
 	public int get_value(String condition) {
 		Pattern r = Pattern.compile("([0-9]+)$");
-		Matcher m = r.matcher(condition);
-		return (int) Integer.valueOf(m.group());
+		Matcher m = r.matcher(condition.replace(" do", ""));
+		m.find();
+		return (int) Integer.valueOf(m.group(0));
 	}
 }
