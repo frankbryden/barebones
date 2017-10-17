@@ -1,5 +1,7 @@
 import java.util.HashMap;
 import java.util.Arrays;
+import java.util.Scanner;
+
 public class Interpreter {
 	private static final String L_TERM = ";";
 	private static final String END = "end";
@@ -32,7 +34,9 @@ public class Interpreter {
 				
 				
 			} else if (line.startsWith("while")){
+
 				_while(i, get_var_name(line, "while"));
+				i = get_matching_end_index(i);
 			}
 			display_state();
 		}

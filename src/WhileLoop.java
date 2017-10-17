@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class WhileLoop {
 	String[] code;
@@ -17,12 +18,15 @@ public class WhileLoop {
 	}
 	
 	public void run() {
+		this.display_code();
 		System.out.println("I am a while Loop");
 		while (this.condition.evaluate(variables)) {
 			for (int i = 1; i < this.code.length; i++){// truncate first and last line of while -- only keep what must be executed
+
 				if (this.code[i].startsWith("while")){
 					int matching_end_index = this.parser.get_matching_end_index(this.code, i);
 					this.whileLoop = new WhileLoop(Arrays.copyOfRange(this.code, i, matching_end_index), this.variables);
+					
 					this.whileLoop.run();
 					i = matching_end_index;
 				} else {
@@ -39,5 +43,13 @@ public class WhileLoop {
 		for (String var_name: variables.keySet()){
 			System.out.printf("%s\t\t%d%n", var_name, variables.get(var_name));
 		}
+	}
+
+	public void display_code(){
+		System.out.println("begin while loop code");
+		for (int i = 1; i < this.code.length; i++){
+			System.out.println(this.code[i]);
+		}
+		System.out.println("end while loop code");
 	}
 }

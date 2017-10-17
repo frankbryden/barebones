@@ -9,11 +9,11 @@ public class Main {
 		// TODO Auto-generated method stub
 		String file = "";
 		try{
-			FileReader fr = new FileReader("prog.bb");
+			FileReader fr = new FileReader("prog2.bb");
 			BufferedReader br = new BufferedReader(fr);
 			String currentLine;
 			while((currentLine = br.readLine()) != null){
-				file += currentLine;
+				file += currentLine.trim();
 			}
 		}catch(FileNotFoundException e){
 			System.err.println(e.getMessage());

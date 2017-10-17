@@ -50,7 +50,7 @@ public class Parser {
 	
 	
 	public void decr(String name){
-		System.out.println("decr command with var " + name);
+		System.out.println("parser decr command with var " + name);
 		if (var_exists(name)){
 			if (register.get(name) < 1){
 				System.err.println("Variables cannot be negative!! --> " + name);
